@@ -1,0 +1,30 @@
+# Ignore build output
+/target/*
+
+# Ignore IDE files (add or remove depending on your IDE)
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Ignore compiled class files outside target (if any)
+*.class
+
+# Ignore logs and temp files
+*.log
+*.tmp
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
