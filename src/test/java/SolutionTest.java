@@ -70,4 +70,65 @@ public class SolutionTest {
     void testPunctuationAroundPalindrome() {
         assertTrue(solution.isPalindrome("!!a!!"), "'!!a!!' should be considered a palindrome");
     }
+    @Test
+    public void testPalindromeCyrillic() {
+        assertTrue(solution.isPalindrome("А роза упала на лапу Азора")); // Russian
+    }
+
+    @Test
+    public void testPalindromeGreek() {
+        assertTrue(solution.isPalindrome("ΑΒΓΔΔΓΒΑ")); // Greek
+    }
+
+    @Test
+    public void testPalindromeJapanese() {
+        assertTrue(solution.isPalindrome("あいいあ")); // Japanese
+    }
+
+    @Test
+    public void testNonPalindromeChinese() {
+        assertFalse(solution.isPalindrome("你好世界")); // Chinese, not a palindrome
+    }
+
+    // === 2. Very Long String ===
+
+    @Test
+    public void testVeryLongPalindrome() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 100_000; i++) {
+            sb.append('a');
+        }
+        String longPalindrome = sb.toString();
+
+        assertTrue(solution.isPalindrome(longPalindrome));
+    }
+
+    @Test
+    public void testVeryLongNonPalindrome() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 100_000; i++) {
+            sb.append('a');
+        }
+        sb.append('b'); // Break the symmetry
+
+        String notPalindrome = sb.toString();
+        assertFalse(solution.isPalindrome(notPalindrome));
+    }
+
+    // === 3. Emojis and Symbols ===
+
+    @Test
+    public void testEmojisOnly() {
+        assertFalse(solution.isPalindrome("😊😊")); // No letters or digits
+    }
+
+    @Test
+    public void testEmojisMixedWithTextPalindrome() {
+        assertTrue(solution.isPalindrome("😊a😊")); // Alphanumeric = "a"
+    }
+
+    @Test
+    public void testEmojiWithTextNonPalindrome() {
+        assertFalse(solution.isPalindrome("😊abc😊")); // Alphanumeric = "abc"
+    }
 }
